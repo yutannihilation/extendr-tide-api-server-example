@@ -13,10 +13,12 @@ Disclaimer: I don't find how to stop this server properly yet. Currently I do `p
 
 ### Client
 
-Plot points,
+Plot any number of points,
 
 ```sh
-curl localhost:8080/plot/point -d '{ "x": 0.1, "y": 0.3, "radius": 2 }'
+curl localhost:8080/plot/point -d '{ "x": 6, "y": 2, "radius": 4 }'
+curl localhost:8080/plot/point -d '{ "x": 1, "y": 2, "radius": 1 }'
+curl localhost:8080/plot/point -d '{ "x": 1, "y": 3, "radius": 0.3 }'
 ```
 
 and view the result on browser on <http://localhost:8080/plot/result>.
