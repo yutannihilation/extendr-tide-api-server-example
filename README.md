@@ -5,11 +5,11 @@
 
 ### Server
 
-Disclaimer: I don't find how to stop this server...
-
 ```sh
 cargo run
 ```
+
+Disclaimer: I don't find how to stop this server properly yet. Currently I do `pkill extendr-tide-ap`.
 
 ### Client
 
