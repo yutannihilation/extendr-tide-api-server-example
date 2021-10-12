@@ -3,7 +3,7 @@ use extendr_api::graphics::{Context, Device, Unit};
 use extendr_api::prelude::*;
 use extendr_engine::start_r;
 
-use std::sync::{Arc, Mutex};
+use async_std::sync::{Arc, Mutex};
 use tide::prelude::*;
 use tide::Request;
 
@@ -60,7 +60,7 @@ async fn main() -> tide::Result<()> {
 async fn plot_point(mut req: Request<State>) -> tide::Result {
     let Circle { x, y, radius } = req.body_json().await?;
 
-    let dev = &mut req.state().dev.lock().unwrap().0;
+    let dev = &mut req.state().dev.lock().await.0;
     let mut gc = Context::from_device(&dev, Unit::Inches);
 
     // Draw a circle
@@ -71,7 +71,7 @@ async fn plot_point(mut req: Request<State>) -> tide::Result {
 }
 
 async fn plot_result(req: Request<State>) -> tide::Result {
-    let dev = &mut req.state().dev.lock().unwrap().0;
+    let dev = &mut req.state().dev.lock().await.0;
     let svg_file = req.state().svg_file.clone();
 
     // Write out the result. Note that, as the device is closed here,
